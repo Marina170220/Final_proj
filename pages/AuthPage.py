@@ -2,17 +2,17 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from Final_project.config.ConfigProvider import ConfigProvider
+from Final_proj.config.ConfigProvider import ConfigProvider
 
 class AuthPage:
     
     def __init__(self, driver: WebDriver) -> None:
-        self.__url = ConfigProvider().get("ui", "base_url")
+        self.__url = ConfigProvider().get_ui_url()
         self.__driver = driver
         
     @allure.step("Перейти на главную страницу")
     def go(self):
-        self.__driver.get(self.__url)
+        self.__driver(self.__url)
     
     @allure.step("Перейти в личный кабинет")
     def login_as(self):

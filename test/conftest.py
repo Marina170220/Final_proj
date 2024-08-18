@@ -5,13 +5,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-from api.BookApi import BookApi
-from config.ConfigProvider import ConfigProvider
-from data.DataProvider import DataProvider
-from pages.AuthPage import AuthPage
-from pages.MainPage import MainPage
-from pages.CartPage import CartPage
-from pages.OrderPage import OrderPage
+from Final_proj.api.BookApi import BookApi
+from Final_proj.config.ConfigProvider import ConfigProvider
+from Final_proj.data.DataProvider import DataProvider
+from Final_proj.pages.AuthPage import AuthPage
+from Final_proj.pages.MainPage import MainPage
+from Final_proj.pages.CartPage import CartPage
+from Final_proj.pages.OrderPage import OrderPage
 
 
 
@@ -31,10 +31,7 @@ def api_client() -> BookApi:
 
 @pytest.fixture
 def wish_book_id() -> str:
-    api = BookApi(
-        ConfigProvider().get_api_url(),
-        DataProvider().get_token()
-    )
+    api = BookApi()
     with allure.step("Получить id книги для добавления в избранное"):
         resp = api.get_book_id()
     return resp
@@ -45,16 +42,16 @@ def test_data():
 
 @pytest.fixture
 def auth_page():
-    return AuthPage()
+    return AuthPage(webdriver)
 
 @pytest.fixture
 def main_page():
-    return MainPage()
+    return MainPage(webdriver)
 
 @pytest.fixture
 def cart_page():
-    return CartPage()
+    return CartPage(webdriver)
 
 @pytest.fixture
 def order_page():
-    return OrderPage()
+    return OrderPage(webdriver)

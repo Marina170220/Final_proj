@@ -1,7 +1,8 @@
 import json
 
-my_file = open('test_data.json')
-global_data = json.load(my_file)
+with open("Final_proj/test_data.json", "r", encoding='utf8') as my_file:
+    data = my_file.read()
+global_data = json.loads(data)
 
 
 class DataProvider:
@@ -10,17 +11,17 @@ class DataProvider:
         self.data = global_data
 
     def get_token(self) -> str:
-        return self.data.get("token")
+        return self.data["token"]
     
     def get_phone(self) -> str:
-        return self.data.get("phone")
+        return self.data["phone"]
     
     def get_search_book(self) -> str:
-        return self.data.get("search_book")
+        return self.data["search_book"]
     
     def get_user_name(self) -> str:
-        return self.data.get("name")
+        return self.data["name"]
     
     def get_comment(self) -> str:
-        return self.data.get("comment")
+        return self.data["comment"]
     

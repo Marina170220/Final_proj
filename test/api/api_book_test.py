@@ -1,5 +1,5 @@
 import allure
-from api.BookApi import BookApi
+from Final_proj.api.BookApi import BookApi
 
 def test_get_books_list(api_client: BookApi):
     books_list = api_client.get_books_list()

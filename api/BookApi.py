@@ -1,8 +1,8 @@
 import requests
 import allure
 
-from config.ConfigProvider import ConfigProvider
-from data.DataProvider import DataProvider
+from Final_proj.config.ConfigProvider import ConfigProvider
+from Final_proj.data.DataProvider import DataProvider
 
 
 class BookApi:
@@ -19,14 +19,14 @@ class BookApi:
     def get_books_list(self) -> list:
         url = self.__url+"products/?page=1&per-page=60&include=category,publishingHouse,customerProductAttraction,ratingStats,author,orsProduct&filterPreset=catalog-index&sortPreset=-popular"
         resp = requests.get(url, cookies=self.__cookie)
-        return resp.json()["data"]["data"]
+        return resp.json()['data']['data']
     
      
     @allure.step("Получить ID первой книги")
     def get_book_id(self):
         url = self.__url+"products/?page=1&per-page=60&include=category,publishingHouse,customerProductAttraction,ratingStats,author,orsProduct&filterPreset=catalog-index&sortPreset=-popular"
         resp = requests.get(url, cookies=self.__cookie)
-        return resp.json()["data"]["data"][0]["id"]
+        return resp.json()['data']['data'][0]['id']
     
     #def get_book_id(self, books_list):
     #   return books_list[0]["id"]

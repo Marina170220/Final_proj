@@ -2,8 +2,8 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from config.ConfigProvider import ConfigProvider
-from data.DataProvider import DataProvider
+from Final_proj.config.ConfigProvider import ConfigProvider
+from Final_proj.data.DataProvider import DataProvider
 
 class MainPage:
     
@@ -22,7 +22,7 @@ class MainPage:
    
     @allure.step("Перейти на главную страницу")
     def go_main(self):
-        self.__driver.get(self.__url)
+        self.__driver(self.__url)
         
     @allure.step("Получить текущий URL")    
     def get_current_url(self) -> str:

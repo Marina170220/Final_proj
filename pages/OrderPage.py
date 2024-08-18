@@ -4,19 +4,19 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from Final_project.config.ConfigProvider import ConfigProvider
+from Final_proj.config.ConfigProvider import ConfigProvider
 
 
 class OrderPage:
     
     def __init__(self, driver: WebDriver) -> None:
         self.__driver = driver
-        self.__url = ConfigProvider().get("ui", "base_url")+"order/make"
+        self.__url = ConfigProvider().get_ui_url()+"order/make"
         self.__wait = WebDriverWait(driver, 5, 0.1)
 
     @allure.step("Перейти на страницу заказа")
     def go_order(self):
-        self.__driver.get(self.__url)
+        self.__driver(self.__url)
 
     @allure.step("Выбор доставки курьером")    
     def сhoose_delivery(self):
