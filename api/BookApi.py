@@ -21,16 +21,11 @@ class BookApi:
         resp = requests.get(url, cookies=self.__cookie)
         return resp.json()['data']['data']
     
-     
     @allure.step("Получить ID первой книги")
     def get_book_id(self):
         url = self.__url+"products/?page=1&per-page=60&include=category,publishingHouse,customerProductAttraction,ratingStats,author,orsProduct&filterPreset=catalog-index&sortPreset=-popular"
         resp = requests.get(url, cookies=self.__cookie)
         return resp.json()['data']['data'][0]['id']
-    
-    #def get_book_id(self, books_list):
-    #   return books_list[0]["id"]
-    
     
     @allure.step("Добавить книгу в избранное")
     def add_book_to_wishlist(self, book_id):
