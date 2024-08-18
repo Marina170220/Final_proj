@@ -1,7 +1,7 @@
 import allure
 from api.BookApi import BookApi
 
-def get_books_list(api_client: BookApi):
+def test_get_books_list(api_client: BookApi):
     books_list = api_client.get_books_list()
     with allure.step("Проверить, что список книг не пустой"):
         assert len(books_list) > 0
