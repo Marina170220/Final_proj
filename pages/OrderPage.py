@@ -25,5 +25,6 @@ class OrderPage:
     @allure.step("Добавить комментарий для курьера")    
     def add_comment(self, comment):
         self.__driver.find_element("xpath", '//span[text()="Добавить комментарий для курьера"]').click()
-        self.__wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".ui-textarea__textarea"))).send_keys(comment)
+        self.__wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "ui-textarea__textarea"))).send_keys(comment)
+        return self.__driver.find_element("xpath", '//span[text()="Добавить комментарий для курьера"]').text
      
