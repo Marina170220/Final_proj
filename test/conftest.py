@@ -14,7 +14,6 @@ from Final_proj.pages.CartPage import CartPage
 from Final_proj.pages.OrderPage import OrderPage
 
 
-
 @pytest.fixture
 def browser():
     with allure.step("Открыть и настроить браузер"):
@@ -41,17 +40,21 @@ def test_data():
     return DataProvider()
 
 @pytest.fixture
+def provider():
+    return ConfigProvider()
+
+@pytest.fixture
 def auth_page():
-    return AuthPage(webdriver)
+    return AuthPage(webdriver, provider)
 
 @pytest.fixture
 def main_page():
-    return MainPage(webdriver)
+    return MainPage(webdriver, provider, test_data)
 
 @pytest.fixture
 def cart_page():
-    return CartPage(webdriver)
+    return CartPage(webdriver, provider)
 
 @pytest.fixture
 def order_page():
-    return OrderPage(webdriver)
+    return OrderPage(webdriver, provider)

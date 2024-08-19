@@ -1,16 +1,16 @@
 import allure
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
+from selenium import webdriver
 
 from Final_proj.config.ConfigProvider import ConfigProvider
 from Final_proj.data.DataProvider import DataProvider
 
 class MainPage:
     
-    def __init__(self, driver: WebDriver) -> None:
+    def __init__(self, driver: webdriver, provider: ConfigProvider, data: DataProvider) -> None:
         self.__driver = driver
-        self.__url = ConfigProvider().get_ui_url()
-        self.__data = DataProvider()
+        self.__url = provider.get_ui_url()
+        self.__data = data
     
     @allure.step("Добавить куки авторизации")
     def add_cookie(self):
@@ -22,7 +22,7 @@ class MainPage:
    
     @allure.step("Перейти на главную страницу")
     def go_main(self):
-        self.__driver(self.__url)
+        self.__driver.get(self.__url)
         
     @allure.step("Получить текущий URL")    
     def get_current_url(self) -> str:

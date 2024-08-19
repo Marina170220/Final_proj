@@ -1,8 +1,9 @@
 import json
 
-with open("Final_proj/test_data.json", "r", encoding='utf8') as my_file:
+with open("C:/Users/User-home/Skypro_AT_projects/Final_Project/Final_proj/test_data.json", "r", encoding='utf8') as my_file:
     data = my_file.read()
 global_data = json.loads(data)
+#print(global_data)
 
 
 class DataProvider:

@@ -1,18 +1,19 @@
 import allure
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
+from selenium import webdriver
+
 
 from Final_proj.config.ConfigProvider import ConfigProvider
 
 class CartPage:
     
-    def __init__(self, driver: WebDriver) -> None:
+    def __init__(self, driver: webdriver, provider: ConfigProvider) -> None:
         self.__driver = driver
-        self.__url = ConfigProvider().get_ui_url()+"personal/cart"
+        self.__url = provider.get_ui_url()+"personal/cart"
     
     @allure.step("Перейти на страницу корзины")
     def go_cart(self):
-        self.__driver(self.__url)
+        self.__driver.get(self.__url)
 
     @allure.step("Найти имя пользователя")    
     def user_name(self):
