@@ -13,8 +13,10 @@ def test_auth(test_data: DataProvider, auth_page: AuthPage, main_page: MainPage)
     user = main_page.user_name()
  
     with allure.step("Проверить, что указаны данные пользователя"):
-        with allure.step("Имя пользователя должно быть "+user_name):
+
+        with allure.step("Имя пользователя должно быть " + user_name):
             assert user == user_name
+
 
 def test_main(test_data: DataProvider, main_page: MainPage):
     search_book = test_data.get_search_book()
@@ -25,19 +27,27 @@ def test_main(test_data: DataProvider, main_page: MainPage):
     books = main_page.get_books_list()
     add_book_button = main_page.add_book_to_cart()
 
-
     with allure.step("Проверить, что указаны данные пользователя"):
-        with allure.step("Имя пользователя должно быть "+user_name):
+
+        with allure.step("Имя пользователя должно быть " + user_name):
             assert user == user_name
 
     with allure.step("Проверить, что отображается список книг"):
         assert books is True
 
-    with allure.step("Проверить, что отображаются книги, соответствующие поиску"):
-        with allure.step("В названии книг должно быть слово "+search_book):
+    with allure.step(
+        "Проверить, что отображаются книги, соответствующие поиску"
+        ):
+
+        with allure.step(
+            "В названии книг должно быть слово " + search_book
+            ):
             assert search_book in search
 
-    with allure.step("Проверить, что при нажаьтт снопки Купить меняется текст кнопки"):
+    with allure.step(
+        "Проверить, что при нажатии кнопки Купить меняется текст кнопки"
+        ):
+
         with allure.step("Текст кнопки должен поменяться на 'Оформить'"):
             assert add_book_button == 'Оформить'
 
@@ -50,18 +60,21 @@ def test_cart(test_data: DataProvider, cart_page: CartPage):
     clear = cart_page.clear_cart()
     restore = cart_page.restore_cart()
 
-
     with allure.step("Проверить, что указаны данные пользователя"):
-        with allure.step("Имя пользователя должно быть "+user_name):
+        with allure.step("Имя пользователя должно быть " + user_name):
             assert user == user_name
 
     with allure.step("Проверить, что в корзине есть товары"):
         assert books is True
 
-    with allure.step("Проверить, что корзина пустая после нажатия конпки Очистить"):
+    with allure.step(
+        "Проверить, что корзина пустая после нажатия конпки Очистить"
+        ):
         assert clear is True
 
-    with allure.step("Проверить, что корзина восстановлена после нажатия конпки Восстановить"):
+    with allure.step(
+        "Проверить, что корзина восстановлена после нажатия конпки Восстановить"
+        ):
         assert restore is True
    
 
@@ -71,5 +84,15 @@ def test_order(test_data: DataProvider, order_page: OrderPage):
     comment = order_page.add_comment(comment_to_add)
 
     with allure.step("Проверить, что комментарий отобразился верно"):
-        with allure.step("Комментарий должен быть "+comment_to_add):
+        with allure.step("Комментарий должен быть " + comment_to_add):
             assert comment == comment_to_add
+
+
+def test_no_auth(main_page_no_auth: MainPage):
+    main_page_no_auth.go_main()
+    user = main_page_no_auth.user_name()
+
+    with allure.step("Проверить, что данные пользователя не отображаются"):
+
+        with allure.step("Вместо имени пользователя должно отображаться 'Кабинет'"):
+            assert user == "Кабинет"
