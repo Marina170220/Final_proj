@@ -58,7 +58,7 @@ def api_client() -> BookApi:
 
 @pytest.fixture
 def wish_book_id() -> str:
-    api = BookApi(test_data)
+    api = api_client
     with allure.step("Получить id книги для добавления в избранное"):
         resp = api.get_book_id()
     return resp
